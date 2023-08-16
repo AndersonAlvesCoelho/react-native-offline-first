@@ -1,5 +1,5 @@
 import { createReducer } from "../../helpers/utils"
-import { randomPhotos } from "../actions/types"
+import { randomPhotos } from "../types"
 
 const initialRandomPhotos = {
   photos: [],
@@ -9,14 +9,14 @@ const initialRandomPhotos = {
 
 export default createReducer(initialRandomPhotos, {
 
-  [randomPhotos.RANDOM_PHOTOS_GET_REQUEST]: (state) => {
+  [randomPhotos.GET_RANDOM_PHOTOS_REQUEST]: (state) => {
     return {
       ...state,
       loading: true,
       errorList: false
     }
   },
-  [randomPhotos.RANDOM_PHOTOS_GET_COMMIT]: (state, payload) => {
+  [randomPhotos.GET_RANDOM_PHOTOS_SUCCESS]: (state, payload) => {
     return {
       ...state,
       photos: payload,
@@ -24,7 +24,7 @@ export default createReducer(initialRandomPhotos, {
       errorList: false
     }
   },
-  [randomPhotos.RANDOM_PHOTOS_GET_ROLLBACK]: (state, _) => {
+  [randomPhotos.GET_RANDOM_PHOTOS_FAILURE]: (state, _) => {
     return {
       ...state,
       loading: false,
